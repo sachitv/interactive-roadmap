@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { FileText, Loader, X } from "lucide-react";
@@ -52,18 +52,16 @@ export default function MarkdownModal(
     };
   }, [isOpen]);
 
-  const handleKeyDown = (event: KeyboardEvent) => {
-    if (event.key === "Escape") {
-      onClose();
-    }
-  };
-
   useEffect(() => {
-    if (isOpen) {
-      document.addEventListener("keydown", handleKeyDown);
-      return () => document.removeEventListener("keydown", handleKeyDown);
-    }
-  }, [isOpen]);
+    if (!isOpen) return;
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        onClose();
+      }
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
@@ -84,6 +82,7 @@ export default function MarkdownModal(
             <h2 className="text-2xl font-bold text-gray-900">{title}</h2>
           </div>
           <button
+            type="button"
             onClick={onClose}
             className="p-2 hover:bg-gray-200 rounded-full transition-colors"
             aria-label="Close modal"
@@ -113,82 +112,82 @@ export default function MarkdownModal(
                   <ReactMarkdown
                     remarkPlugins={[remarkGfm]}
                     components={{
-                      h1: ({ node, ...props }) => (
+                      h1: ({ ...props }) => (
                         <h1
                           className="text-4xl font-bold text-gray-900 mb-6 border-b-2 border-blue-200 pb-4"
                           {...props}
                         />
                       ),
-                      h2: ({ node, ...props }) => (
+                      h2: ({ ...props }) => (
                         <h2
                           className="text-3xl font-semibold text-gray-800 mb-4 mt-8"
                           {...props}
                         />
                       ),
-                      h3: ({ node, ...props }) => (
+                      h3: ({ ...props }) => (
                         <h3
                           className="text-2xl font-semibold text-gray-700 mb-3 mt-6"
                           {...props}
                         />
                       ),
-                      p: ({ node, ...props }) => (
+                      p: ({ ...props }) => (
                         <p
                           className="text-gray-600 leading-relaxed mb-4"
                           {...props}
                         />
                       ),
-                      ul: ({ node, ...props }) => (
+                      ul: ({ ...props }) => (
                         <ul
                           className="list-disc list-inside text-gray-600 mb-4 space-y-2"
                           {...props}
                         />
                       ),
-                      ol: ({ node, ...props }) => (
+                      ol: ({ ...props }) => (
                         <ol
                           className="list-decimal list-inside text-gray-600 mb-4 space-y-2"
                           {...props}
                         />
                       ),
-                      li: ({ node, ...props }) => (
+                      li: ({ ...props }) => (
                         <li className="leading-relaxed" {...props} />
                       ),
-                      strong: ({ node, ...props }) => (
+                      strong: ({ ...props }) => (
                         <strong
                           className="font-semibold text-gray-900"
                           {...props}
                         />
                       ),
-                      code: ({ node, ...props }) => (
+                      code: ({ ...props }) => (
                         <code
                           className="bg-gray-100 text-gray-800 px-2 py-1 rounded font-mono text-sm"
                           {...props}
                         />
                       ),
-                      pre: ({ node, ...props }) => (
+                      pre: ({ ...props }) => (
                         <pre
                           className="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto mb-4"
                           {...props}
                         />
                       ),
-                      blockquote: ({ node, ...props }) => (
+                      blockquote: ({ ...props }) => (
                         <blockquote
                           className="border-l-4 border-blue-200 pl-4 italic text-gray-600 mb-4"
                           {...props}
                         />
                       ),
-                      table: ({ node, ...props }) => (
+                      table: ({ ...props }) => (
                         <table
                           className="min-w-full border-collapse border border-gray-300 mb-4"
                           {...props}
                         />
                       ),
-                      th: ({ node, ...props }) => (
+                      th: ({ ...props }) => (
                         <th
                           className="border border-gray-300 bg-gray-50 px-4 py-2 text-left font-semibold"
                           {...props}
                         />
                       ),
-                      td: ({ node, ...props }) => (
+                      td: ({ ...props }) => (
                         <td
                           className="border border-gray-300 px-4 py-2"
                           {...props}

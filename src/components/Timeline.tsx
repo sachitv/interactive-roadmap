@@ -1,12 +1,9 @@
-import { RoadmapItem } from "../data/roadmapData";
-
 interface TimelineProps {
-  items: RoadmapItem[];
   startDate: Date;
   endDate: Date;
 }
 
-export default function Timeline({ items, startDate, endDate }: TimelineProps) {
+export default function Timeline({ startDate, endDate }: TimelineProps) {
   const totalDays = Math.ceil(
     (endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24),
   );

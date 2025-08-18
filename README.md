@@ -2,6 +2,18 @@
 
 A Vite-powered React + TypeScript project with Tailwind CSS.
 
+## Table of Contents
+- [Prerequisites](#prerequisites)
+- [Install](#install)
+- [Run (development)](#run-development)
+- [Build (production)](#build-production)
+- [Preview](#preview-serve-the-production-build)
+- [Lint](#lint)
+- [Environment variables](#environment-variables)
+- [Use with Bun](#use-with-bun)
+- [Use with Deno](#use-with-deno)
+- [Common issues](#common-issues)
+
 ## Prerequisites
 - Node.js 22 (project includes `.nvmrc`). Use `nvm use` if available.
 - npm (lockfile is `package-lock.json`). Yarn/Pnpm also work if you prefer.
@@ -38,6 +50,60 @@ npm run lint
 ## Environment variables
 - Create a `.env` file if needed.
 - Only variables prefixed with `VITE_` are exposed to the client (e.g. `VITE_API_URL=`).
+
+## Use with Bun
+- Prerequisite: Bun 1.0+ installed (`bun -v`).
+- Install dependencies:
+  ```bash
+  bun install
+  ```
+- Run dev server:
+  ```bash
+  bun run dev
+  # or, if Bun auto-detects scripts
+  bun dev
+  ```
+- Build for production:
+  ```bash
+  bun run build
+  ```
+- Preview the production build:
+  ```bash
+  bun run preview
+  ```
+- Lint:
+  ```bash
+  bun run lint
+  ```
+
+## Use with Deno
+- Prerequisite: Deno 2.0+ (or Deno 1.41+ with `npm:` compatibility).
+- Deno tasks are included in `deno.json`.
+
+- Run dev server:
+  ```bash
+  deno task dev
+  ```
+- Build for production:
+  ```bash
+  deno task build
+  ```
+- Preview the production build:
+  ```bash
+  deno task preview
+  ```
+- Lint:
+  ```bash
+  deno task lint
+  ```
+
+- Alternatively, run tools directly via `npm:` specifiers:
+  ```bash
+  deno run -A npm:vite         # dev
+  deno run -A npm:vite build   # build
+  deno run -A npm:vite preview # preview
+  deno run -A npm:eslint .     # lint
+  ```
 
 ## Common issues
 - Port in use: run `npm run dev -- --port 5174` (or another free port).

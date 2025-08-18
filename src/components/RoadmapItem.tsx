@@ -1,4 +1,3 @@
-import React from "react";
 import { Calendar, Clock, User } from "lucide-react";
 import { RoadmapItem as RoadmapItemType } from "../data/roadmapData";
 
@@ -7,6 +6,8 @@ interface RoadmapItemProps {
   onClick: () => void;
   position: { left: number; width: number };
   row: number;
+  rowHeight: number;
+  rowOffset: number;
 }
 
 const statusColors = {
@@ -34,7 +35,7 @@ const statusBg = {
 };
 
 export default function RoadmapItem(
-  { item, onClick, position, row }: RoadmapItemProps,
+  { item, onClick, position, row, rowHeight, rowOffset }: RoadmapItemProps,
 ) {
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString("en-US", {
@@ -50,8 +51,7 @@ export default function RoadmapItem(
       style={{
         left: `${position.left}%`,
         width: `${position.width}%`,
-        top: `${50 + row * 200}px`,
-        marginLeft: "120px", // Offset for owner labels
+        top: `${rowOffset + row * rowHeight}px`,
       }}
       onClick={onClick}
     >
