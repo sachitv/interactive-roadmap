@@ -2,7 +2,17 @@
 
 This is a simple Vite + React + TypeScript app for generating an interactive roadmap.
 
-![App Demo](./demo.gif)
+<p align="center">
+  <a href="https://interactive-roadmap.pages.dev/" target="_blank">
+    <img alt="Live Demo" src="https://img.shields.io/badge/Live%20Demo-Open%20Now-2ea44f?style=for-the-badge" />
+  </a>
+</p>
+
+<p align="center">
+  <a href="https://interactive-roadmap.pages.dev/" target="_blank">
+    <img src="./demo.gif" alt="App Demo" width="1000" />
+  </a>
+</p>
 
 ## Table of Contents
 - [Usage](#usage)
